@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { MaterialModule } from '@angular/material';
 
 import { LoginModule } from './login/login.module';
 import { AdminModule } from './admin/admin.module';
@@ -23,6 +24,7 @@ import { CustomerService } from './customer/customer.service';
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    MaterialModule,
 
     LoginModule,
     AdminModule
