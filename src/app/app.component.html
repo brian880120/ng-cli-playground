@@ -1,4 +1,17 @@
 <h1>
   {{title}}
 </h1>
+<nav>
+    <ul>
+        <li>
+            <a href="" [routerLink]="['/customers']">Customers</a>
+        </li>
+        <li>
+            <a href="" [routerLink]="['/orders']">Orders</a>
+        </li>
+        <li>
+            <a href="" [routerLink]="['/admin']">Admin</a>
+        </li>
+    </ul>
+</nav>
 <router-outlet></router-outlet>
