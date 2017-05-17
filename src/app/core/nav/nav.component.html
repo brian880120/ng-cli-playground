@@ -1,0 +1,5 @@
+<md-tab-group>
+    <md-tab *ngFor="let item of menuItems" [label]="item.caption">
+        <a [routerLink]="item.link" href=""></a>
+    </md-tab>
+</md-tab-group>
