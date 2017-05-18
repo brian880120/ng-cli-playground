@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
 import { OrdersComponent } from './orders/orders.component';
 import { CustomerService } from './customer/customer.service';
+import { CharacterService } from './characters/shared/character.service';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,7 @@ import { CustomerService } from './customer/customer.service';
         LoginModule,
         AdminModule
     ],
-    providers: [CustomerService],
+    providers: [CustomerService, CharacterService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
