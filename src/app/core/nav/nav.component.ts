@@ -18,6 +18,8 @@ export class NavComponent implements OnInit {
             caption: 'Dashboard', link: ['/dashboard']
         }, {
             caption: 'Characters', link: ['/characters']
+        }, {
+            caption: 'Wikipedia', link: ['/wikipedia']
         }];
     }
 

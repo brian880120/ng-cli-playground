@@ -10,6 +10,10 @@ const routes: Routes = [
     {
         path: 'characters',
         loadChildren: 'app/characters/characters.module#CharactersModule'
+    },
+    {
+        path: 'wikipedia',
+        loadChildren: 'app/wikipedia/wikipedia.module#WikipediaModule'
     }
 ];
 

@@ -1,3 +1,8 @@
-<div *ngFor="let character of characters | async">
-    {{character.name}}
-</div>
+<md-grid-list cols="4" rowHeight="100px">
+    <md-grid-tile
+        *ngFor="let character of characters | async"
+        [colspan]="1"
+        [rowspan]="1">
+        {{character.name}}
+    </md-grid-tile>
+</md-grid-list>
