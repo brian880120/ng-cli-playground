@@ -20,6 +20,12 @@ export class CharacterService {
             .catch(this.handleError);
     }
 
+    getCharacter(id: number): Observable<Character> {
+        return this.http.get(charactersUrl + '/1')
+            .map(res => <Character>(res.json()))
+            .catch(this.handleError);
+    }
+
     private extractData<T>(res: Response) {
         if (res.status < 200 || res.status >= 300) {
             throw new Error('Bad response status: ' + res.status);
