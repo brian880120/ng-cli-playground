@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MdTabsModule } from '@angular/material';
 
+import { ModalModule } from './modal/modal.module';
 import { NavComponent } from './nav/nav.component';
 
 @NgModule({
@@ -11,9 +12,11 @@ import { NavComponent } from './nav/nav.component';
         CommonModule,
         FormsModule,
         RouterModule,
-        MdTabsModule
+        MdTabsModule,
+        ModalModule
     ],
     exports: [
+        ModalModule,
         [NavComponent]
     ],
     declarations: [NavComponent]

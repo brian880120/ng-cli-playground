@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import * as _ from 'lodash';
 
+import { ModalService } from '../../core';
 import { Character } from '../shared/character.model';
 import { CharacterService } from '../shared/character.service';
 
@@ -17,6 +18,7 @@ export class CharacterComponent implements OnInit {
     backupCharacter: Character = <Character>{};
     constructor(
         private characterService: CharacterService,
+        private modalService: ModalService,
         private router: Router,
         private route: ActivatedRoute
     ) { }
@@ -38,8 +40,11 @@ export class CharacterComponent implements OnInit {
     }
 
     delete() {
-        this.characterService.deleteCharacter(this.editCharacter)
-            .subscribe(() => this.gotoCharacters());
+        this.modalService.activate('Do you want to delete').then(responseOk => {
+            console.log(responseOk);
+        });
+        // this.characterService.deleteCharacter(this.editCharacter)
+        //     .subscribe(() => this.gotoCharacters());
     }
 
     cancel() {
