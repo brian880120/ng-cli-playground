@@ -1,8 +1,11 @@
 <div class="container character-group">
+    <div>
+        <button md-raised-button (click)="gotoDetail()">Add</button>
+    </div>
     <div class="character-card"
         *ngFor="let character of characters | async">
         <div class="character-content">
-            <span>{{character.id}}. {{character.name}}</span>
+            <span>{{character._id}}. {{character.name}}</span>
             <i aria-hidden="true"
                 (click)="gotoDetail(character)"
                 class="fa fa-play-circle-o fa-3x character-icon"></i>

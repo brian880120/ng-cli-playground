@@ -1,3 +1,29 @@
-<div>
-    {{editCharacter.name}}
+<div class="container">
+    <h4 class="character-title">
+        {{editCharacter.name | uppercase}} details
+    </h4>
+    <div class="character-content">
+        <md-input-container>
+            <input [(ngModel)]="editCharacter.name"
+                mdInput placeholder="Character Name">
+        </md-input-container>
+        <md-input-container>
+            <input [(ngModel)]="editCharacter.side"
+                mdInput placeholder="Side">
+        </md-input-container>
+    </div>
+    <div class="detail-button">
+        <button class="btn-save"
+            md-raised-button
+            (click)="save()">
+            <span *ngIf="!isAddMode()">UPDATE</span>
+            <span *ngIf="isAddMode()">SAVE</span>
+        </button>
+        <button md-raised-button
+            (click)="cancel()"
+            *ngIf="!isAddMode()">CANCEL</button>
+        <button md-raised-button
+            (click)="delete()"
+            *ngIf="!isAddMode()">DELETE</button>
+    </div>
 </div>

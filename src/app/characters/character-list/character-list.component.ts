@@ -28,7 +28,10 @@ export class CharacterListComponent implements OnInit {
     }
 
     gotoDetail(character: Character) {
-        let link = ['/characters', character.id];
+        let link = ['/characters/new'];
+        if (character) {
+            link = [`/characters/${character._id}`];
+        }
         this.router.navigate(link);
     }
 }
