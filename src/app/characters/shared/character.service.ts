@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
+import { Subject } from 'rxjs/Subject';
 import { Character } from './character.model'
 import * as _ from 'lodash';
 
@@ -12,9 +13,19 @@ export class CharacterService {
 
     cachedCharacters: Character[];
 
+    characterListSubject = new Subject<Character[]>();
+
+    characterList = this.characterListSubject.asObservable();
+
     constructor(
         private http: Http
     ) { }
+
+    refreshCharacterList() {
+        this.getCharacters().subscribe(characters => {
+            this.characterListSubject.next(characters);
+        });
+    }
 
     addCharacter(character: Character): Observable<Character> {
         character._id = this.getNextId();
@@ -53,9 +64,14 @@ export class CharacterService {
     }
 
     private getNextId() {
-        return _.maxBy(this.cachedCharacters, function(char) {
-            return char._id;
-        })._id + 1;
+        console.log(this.cachedCharacters);
+        if (this.cachedCharacters && !_.isEmpty(this.cachedCharacters)) {
+            return _.maxBy(this.cachedCharacters, function(char) {
+                return char._id;
+            })._id + 1;
+        } else {
+            return 1;
+        }
     }
 
     private extractData<T>(res: Response) {

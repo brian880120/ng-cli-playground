@@ -12,7 +12,8 @@ import { CharacterService } from '../shared/character.service';
 })
 export class CharacterListComponent implements OnInit {
 
-    characters: Observable<Character[]>
+    characters: Character[];
+    newCharacter: Character;
 
     constructor(
         private characterService: CharacterService,
@@ -21,17 +22,26 @@ export class CharacterListComponent implements OnInit {
 
     ngOnInit() {
         this.getCharacters();
+        this.newCharacter = <Character>{name: '', side: ''};
     }
 
     getCharacters() {
-        this.characters = this.characterService.getCharacters();
+        this.characterService.characterListSubject
+            .subscribe(characters => {
+                this.characters = characters;
+            });
     }
 
     gotoDetail(character: Character) {
-        let link = ['/characters/new'];
-        if (character) {
-            link = [`/characters/${character._id}`];
-        }
+        let link = ['/characters', character._id];
         this.router.navigate(link);
+    }
+
+    addCharacter() {
+        this.characterService.addCharacter(this.newCharacter)
+            .subscribe(() => {
+                this.characterService.refreshCharacterList();
+                this.newCharacter = <Character>{name: '', side: ''};
+            });
     }
 }

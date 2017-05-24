@@ -1,9 +1,18 @@
 <div class="container character-group">
+    <md-input-container>
+        <input [(ngModel)]="newCharacter.name"
+            mdInput placeholder="Character Name">
+    </md-input-container>
+    <md-input-container>
+        <input [(ngModel)]="newCharacter.side"
+            mdInput placeholder="Side">
+    </md-input-container>
     <div>
-        <button md-raised-button (click)="gotoDetail()">Add</button>
+        <button md-raised-button (click)="addCharacter()">Add</button>
     </div>
+
     <div class="character-card"
-        *ngFor="let character of characters | async">
+        *ngFor="let character of characters">
         <div class="character-content">
             <span>{{character._id}}. {{character.name}}</span>
             <i aria-hidden="true"

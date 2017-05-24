@@ -15,15 +15,13 @@
     <div class="detail-button">
         <button class="btn-save"
             md-raised-button
-            (click)="save()">
-            <span *ngIf="!isAddMode()">UPDATE</span>
-            <span *ngIf="isAddMode()">SAVE</span>
+            (click)="save()">UPDATE
         </button>
         <button md-raised-button
-            (click)="cancel()"
-            *ngIf="!isAddMode()">CANCEL</button>
+            (click)="cancel()">CANCEL
+        </button>
         <button md-raised-button
-            (click)="delete()"
-            *ngIf="!isAddMode()">DELETE</button>
+            (click)="delete()">DELETE
+        </button>
     </div>
 </div>

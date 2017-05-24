@@ -30,38 +30,29 @@ export class CharacterComponent implements OnInit {
     }
 
     save() {
-        if (this.isAddMode()) {
-            this.characterService.addCharacter(this.editCharacter)
-                .subscribe(() => this.gotoCharacters());
-        } else {
-            this.characterService.updateCharacter(this.editCharacter)
-                .subscribe(() => this.gotoCharacters());
-        }
+        this.characterService.updateCharacter(this.editCharacter)
+            .subscribe(() => {
+                this.characterService.refreshCharacterList();
+                this.gotoCharacters();
+            });
     }
 
     delete() {
-        this.modalService.activate('Do you want to delete').then(responseOk => {
-            console.log(responseOk);
-        });
-        // this.characterService.deleteCharacter(this.editCharacter)
-        //     .subscribe(() => this.gotoCharacters());
+        // this.modalService.activate('Do you want to delete').then(responseOk => {
+        //     console.log(responseOk);
+        // });
+        this.characterService.deleteCharacter(this.editCharacter)
+            .subscribe(() => {
+                this.characterService.refreshCharacterList();
+                this.gotoCharacters();
+            });
     }
 
     cancel() {
         this.editCharacter = this.backupCharacter;
-        //this.gotoCharacters();
-    }
-
-    private isAddMode() {
-        return _.isNaN(this.id);
     }
 
     private getCharacter() {
-        if (this.isAddMode()) {
-            this.editCharacter = <Character>{name: '', side: ''};
-            this.backupCharacter = <Character>{name: '', side: ''};
-            return;
-        }
         this.characterService.getCharacter(this.id)
             .subscribe(character => {
                 this.editCharacter = Object.assign({}, character);
