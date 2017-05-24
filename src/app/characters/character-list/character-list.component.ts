@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
@@ -10,7 +10,7 @@ import { CharacterService } from '../shared/character.service';
     templateUrl: './character-list.component.html',
     styleUrls: ['./character-list.component.css']
 })
-export class CharacterListComponent implements OnInit {
+export class CharacterListComponent implements OnInit, AfterViewInit {
 
     characters: Character[];
     newCharacter: Character;
@@ -23,6 +23,10 @@ export class CharacterListComponent implements OnInit {
     ngOnInit() {
         this.getCharacters();
         this.newCharacter = <Character>{name: '', side: ''};
+    }
+
+    ngAfterViewInit() {
+        this.characterService.refreshCharacterList();
     }
 
     getCharacters() {

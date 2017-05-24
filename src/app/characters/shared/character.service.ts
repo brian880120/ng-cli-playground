@@ -64,7 +64,6 @@ export class CharacterService {
     }
 
     private getNextId() {
-        console.log(this.cachedCharacters);
         if (this.cachedCharacters && !_.isEmpty(this.cachedCharacters)) {
             return _.maxBy(this.cachedCharacters, function(char) {
                 return char._id;

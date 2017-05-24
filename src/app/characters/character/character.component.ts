@@ -49,7 +49,7 @@ export class CharacterComponent implements OnInit {
     }
 
     cancel() {
-        this.editCharacter = this.backupCharacter;
+        this.editCharacter = Object.assign({}, this.backupCharacter);
     }
 
     private getCharacter() {
