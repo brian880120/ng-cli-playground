@@ -50,6 +50,7 @@ export class CharacterComponent implements OnInit {
 
     cancel() {
         this.editCharacter = Object.assign({}, this.backupCharacter);
+        this.gotoCharacters();
     }
 
     private getCharacter() {
