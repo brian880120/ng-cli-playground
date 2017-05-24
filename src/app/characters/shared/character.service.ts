@@ -30,8 +30,7 @@ export class CharacterService {
     addCharacter(character: Character): Observable<Character> {
         character._id = this.getNextId();
         return this.http.post(charactersUrl, character)
-            .map(res => res.json().data)
-            .catch(this.handleError);
+            .map(res => res.json().data);
     }
 
     getCharacters(): Observable<Character[]> {
@@ -40,27 +39,23 @@ export class CharacterService {
             .map(res => {
                 this.cachedCharacters = this.extractData<Character[]>(res);
                 return this.cachedCharacters;
-            })
-            .catch(this.handleError);
+            });
     }
 
     getCharacter(id: number): Observable<Character> {
         return this.http.get(`${charactersUrl}/${id}`)
-            .map(res => <Character>(res.json()))
-            .catch(this.handleError);
+            .map(res => <Character>(res.json()));
     }
 
     updateCharacter(character: Character): Observable<Character> {
         return this.http
             .patch(`${charactersUrl}/${character._id}`, {'name': character.name, 'side': character.side})
-            .map(res => this.extractData<Character>(res))
-            .catch(this.handleError);
+            .map(res => this.extractData<Character>(res));
     }
 
     deleteCharacter(character: Character): Observable<Character> {
         return this.http.delete(`${charactersUrl}/${character._id}`)
-            .map(res => this.extractData<Character>(res))
-            .catch(this.handleError);
+            .map(res => this.extractData<Character>(res));
     }
 
     private getNextId() {

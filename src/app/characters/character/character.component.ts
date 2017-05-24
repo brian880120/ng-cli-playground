@@ -25,7 +25,6 @@ export class CharacterComponent implements OnInit {
 
     ngOnInit() {
         this.route.params.map(params => params['id'])
-            .do(id => this.id = +id)
             .subscribe(id => this.getCharacter());
     }
 
@@ -53,7 +52,7 @@ export class CharacterComponent implements OnInit {
     }
 
     private getCharacter() {
-        this.characterService.getCharacter(this.id)
+        this.characterService.getCharacter(+this.id)
             .subscribe(character => {
                 this.editCharacter = Object.assign({}, character);
                 this.backupCharacter = Object.assign({}, character);
