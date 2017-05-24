@@ -1,7 +1,7 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-
+import { Subscription } from 'rxjs/Subscription';
 import { Character } from '../shared/character.model';
 import { CharacterService } from '../shared/character.service';
 
@@ -10,30 +10,26 @@ import { CharacterService } from '../shared/character.service';
     templateUrl: './character-list.component.html',
     styleUrls: ['./character-list.component.css']
 })
-export class CharacterListComponent implements OnInit, AfterViewInit {
+export class CharacterListComponent implements OnInit, OnDestroy {
 
     characters: Character[];
     newCharacter: Character;
+    characterListSubscription: Subscription;
 
     constructor(
         private characterService: CharacterService,
         private router: Router
-    ) { }
+    ) {}
 
     ngOnInit() {
-        this.getCharacters();
         this.newCharacter = <Character>{name: '', side: ''};
-    }
-
-    ngAfterViewInit() {
         this.characterService.refreshCharacterList();
+        this.characterListSubscription = this.characterService.characterList
+            .subscribe(characters => this.characters = characters);
     }
 
-    getCharacters() {
-        this.characterService.characterListSubject
-            .subscribe(characters => {
-                this.characters = characters;
-            });
+    ngOnDestroy() {
+        this.characterListSubscription.unsubscribe();
     }
 
     gotoDetail(character: Character) {

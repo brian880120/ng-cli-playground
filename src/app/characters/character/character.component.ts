@@ -43,7 +43,6 @@ export class CharacterComponent implements OnInit {
         // });
         this.characterService.deleteCharacter(this.editCharacter)
             .subscribe(() => {
-                this.characterService.refreshCharacterList();
                 this.gotoCharacters();
             });
     }

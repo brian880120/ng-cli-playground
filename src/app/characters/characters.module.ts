@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MdInputModule, MdButtonModule } from '@angular/material';
 
 import { CharactersRoutingModule, routedComponents } from './characters-routing.module';
+import { SpyDirective } from './shared/spy.directive';
 
 @NgModule({
     imports: [
@@ -13,6 +14,6 @@ import { CharactersRoutingModule, routedComponents } from './characters-routing.
         MdButtonModule,
         CharactersRoutingModule
     ],
-    declarations: [routedComponents]
+    declarations: [routedComponents, SpyDirective]
 })
 export class CharactersModule { }
