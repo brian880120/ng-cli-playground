@@ -14,6 +14,10 @@ const routes: Routes = [
     {
         path: 'wikipedia',
         loadChildren: 'app/wikipedia/wikipedia.module#WikipediaModule'
+    },
+    {
+        path: 'login',
+        loadChildren: 'app/login/login.module#LoginModule'
     }
 ];
 

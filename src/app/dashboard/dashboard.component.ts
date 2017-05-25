@@ -14,7 +14,8 @@ export class DashboardComponent implements OnInit {
 
     constructor(
         private characterService: CharacterService
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
         this.getCharacters();
