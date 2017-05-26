@@ -18,6 +18,10 @@ const routes: Routes = [
     {
         path: 'login',
         loadChildren: 'app/login/login.module#LoginModule'
+    },
+    {
+        path: 'dragdrop',
+        loadChildren: 'app/dragdrop/dragdrop.module#DragdropModule'
     }
 ];
 

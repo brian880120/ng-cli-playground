@@ -32,7 +32,6 @@ import { CharacterService } from './characters/shared/character.service';
         MaterialModule,
         MdInputModule,
         MdAutocompleteModule,
-
         CoreModule,
         LoginModule,
         AdminModule

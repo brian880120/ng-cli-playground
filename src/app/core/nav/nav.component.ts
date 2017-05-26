@@ -20,6 +20,8 @@ export class NavComponent implements OnInit {
             caption: 'Characters', link: ['/characters']
         }, {
             caption: 'Wikipedia', link: ['/wikipedia']
+        }, {
+            caption: 'DragDrop', link: ['/dragdrop']
         }];
     }
 
